@@ -10,7 +10,7 @@ int main(void)
 	int		fd;
 	int		ret;
 
-	fd = open("test.txt", O_RDWR);
+	fd = open("gnltest.txt", O_RDWR);
 	// if (fd < 0)
 	// {
 	// 	printf("failed open file\n");

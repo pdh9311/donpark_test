@@ -10,6 +10,10 @@
 #  define BUFFER_SIZE 10
 # endif
 
+# ifndef OPEN_MAX
+#  define OPEN_MAX 65535
+# endif
+
 int		get_next_line(int fd, char **line);
 
 size_t	ft_strlen(char *str);

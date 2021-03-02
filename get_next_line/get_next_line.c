@@ -52,17 +52,6 @@ int	remains_data(char **backup, char **line, int read_size)
 	return (0);
 }
 
-char	*set_backup(char *backup, char *buf)
-{
-	char *tmp;
-
-	if (!backup)
-		tmp = ft_strdup(buf);
-	else
-		tmp = ft_strjoin(backup, buf);
-	return (tmp);
-}
-
 int	get_next_line(int fd, char **line)
 {
 	int			read_size;
@@ -70,7 +59,7 @@ int	get_next_line(int fd, char **line)
 	static char	*backup;
 	int			cut_idx;
 	char		*tmp;
-
+	
 	if (BUFFER_SIZE <= 0 || fd < 0 || fd > OPEN_MAX || !line)
 		return (-1);
 	if (!(buf = (char *)malloc(BUFFER_SIZE + 1)))

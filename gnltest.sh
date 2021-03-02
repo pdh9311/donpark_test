@@ -1,5 +1,5 @@
 #! /bin/bash
-#42TESTER-GNL
+#42TESTER-GNL, 42curus_gnl_tests, Get_Next_Line_Tester
 cp get_next_line/get_next_line.c ./ 
 cp get_next_line/get_next_line_utils.c ./
 cp get_next_line/get_next_line.h ./

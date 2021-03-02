@@ -1,6 +1,4 @@
 #include "get_next_line.h"
-#define OPEN_MAX 65536
-#include <stdio.h>
 
 int		find_nl(char *save, char n)
 {
@@ -98,11 +96,9 @@ int		get_next_line(int fd, char **line)
 		buf[offset] = '\0';
 		if (!(tmp = set_save(save[fd], buf)))//저장된 save[fd]와 받아온 buf로 save[fd]를 구성하는 함수
 			return (-1);
-		printf("tmp:		%s\t%p\n", tmp, tmp);
 		if (save[fd])//옛날 save를 해제시켜줌.
 			free(save[fd]);
 		save[fd] = tmp;
-		printf("save[fd]:	%s\t%p\n\n", save[fd], save[fd]);
 		if ((cut_point = find_nl(save[fd], '\n')) >= 0)//새로 구성된 save[fd]에서 \n을 찾아 idx를 반환
 			return (cut_string(&save[fd], line, cut_point, buf)); //cut_point에 해당하는 위치에 null을 넣고 
 																														//그 이전 값은 line에 이후 값은 save[fd]에 담아줍니다.
