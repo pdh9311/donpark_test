@@ -36,6 +36,7 @@ char	*ft_strdup(const char *s)
 	return (new_str);
 }
 
+
 char	*ft_strjoin(const char *s1, const char *s2)
 {
 	char	*strjoin;
@@ -75,14 +76,16 @@ int	is_newline(char *backup)
 	return (-1);
 }
 
-int	split_line(char **backup, char **line, int cut_idx)
+int	split_line(char **backup, char **line, int cut_idx, char *buf)
 {
 	char	*temp;
 	int		len;
 
+	if(buf)
+		free(buf);
 	(*backup)[cut_idx] = '\0';
 	*line = ft_strdup(*backup);
-	len = ft_strlen(*backup + cut_idx  +1);
+	len = ft_strlen(*backup + cut_idx + 1);
 	if (len == 0)
 	{
 		free(*backup);
@@ -95,14 +98,19 @@ int	split_line(char **backup, char **line, int cut_idx)
 	return (1);
 }
 
-int	remains_data(char **backup, char **line, int read_size)
+int	remains_data(char **backup, char **line, int read_size, char *buf)
 {
 	int	cut_idx;
 
+	if (buf)
+	{
+		free(buf);
+		buf = 0;
+	}
 	if (read_size < 0)
 		return (-1);
 	if (*backup && (cut_idx = is_newline(*backup)) != -1)
-		return (split_line(backup, line, cut_idx));
+		return (split_line(backup, line, cut_idx, buf));
 	else if (*backup)
 	{
 		*line = *backup;
@@ -128,19 +136,16 @@ int	get_next_line(int fd, char **line)
 		return (-1);
 	while ((read_size = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
+
 		buf[read_size] = '\0';
 		tmp = ft_strjoin(backup, buf);
-		free(buf);
-		if (backup)
+		if(backup)
 			free(backup);
 		backup = tmp;
-		if ((cut_idx = is_newline(backup)) != -1)
-		{
-			return (split_line(&backup, line, cut_idx));
-		}
+		if ((cut_idx = is_newline(backup)) != -1)	// backup에 개행이 있으면
+			return (split_line(&backup, line, cut_idx, buf));
 	}
-	free(buf);
-	return (remains_data(&backup, line, read_size));
+	return (remains_data(&backup, line, read_size, buf));
 }
 
 int	main(void)
@@ -152,12 +157,11 @@ int	main(void)
 	fd = open("gnltest.txt", O_RDONLY);
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
-		printf("(%d)\tline : %s\n\n",g_cnt, line);
+		printf("(%d)\tline : %s\n",g_cnt, line);
 		free(line);
 	}
-	printf("(%d)\tline : %s\n\n",g_cnt, line);
+	// printf("ret: %d\n", ret);
+	printf("(%d)\tline : %s\n",g_cnt, line);
 	free(line);
 	return (0);
 }
-
-

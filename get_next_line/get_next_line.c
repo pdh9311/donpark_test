@@ -40,6 +40,11 @@ int	remains_data(char **backup, char **line, int read_size, char *buf)
 {
 	int	cut_idx;
 
+	if (buf)
+	{
+		free(buf);
+		buf = 0;
+	}
 	if (read_size < 0)
 		return (-1);
 	if (*backup && (cut_idx = is_newline(*backup)) != -1)
@@ -56,6 +61,7 @@ int	remains_data(char **backup, char **line, int read_size, char *buf)
 
 int	get_next_line(int fd, char **line)
 {
+	g_cnt++;
 	int			read_size;
 	char		*buf;
 	static char	*backup;
@@ -73,10 +79,9 @@ int	get_next_line(int fd, char **line)
 		tmp = ft_strjoin(backup, buf);
 		if(backup)
 			free(backup);
-		backup =tmp;
-		if ((cut_idx = is_newline(backup)) != -1)	// backup에 개행이 있으면
+		backup = tmp;
+		if ((cut_idx = is_newline(backup)) != -1)
 			return (split_line(&backup, line, cut_idx, buf));
 	}
-	free(buf);
 	return (remains_data(&backup, line, read_size, buf));
 }
