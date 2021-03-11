@@ -8,6 +8,7 @@ cp get_next_line/get_next_line.h ./
 #42cursus_gnl_tests
 chmod 777 ./42cursus_gnl_tests/compile.sh
 chmod 777 ./42cursus_gnl_tests/compile_and_run.sh
+chmod 777 ./42cursus_gnl_tests/run.sh
 mkdir ./42cursus_gnl_tests/get_next_line
 cp get_next_line/get_next_line.c ./42cursus_gnl_tests/get_next_line/ 
 cp get_next_line/get_next_line_utils.c ./42cursus_gnl_tests/get_next_line/ 
