@@ -61,6 +61,7 @@ int	remains_data(char **backup, char **line, int read_size, char *buf)
 
 int	get_next_line(int fd, char **line)
 {
+	g_cnt++;
 	int			read_size;
 	char		*buf;
 	static char	*backup;

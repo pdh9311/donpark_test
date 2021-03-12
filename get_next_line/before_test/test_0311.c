@@ -4,7 +4,7 @@
 #include <stdlib.h>
 #include <fcntl.h>
 
-# define BUFFER_SIZE 1
+# define BUFFER_SIZE 30
 # define OPEN_MAX 65536
 
 int	g_cnt;
@@ -102,6 +102,11 @@ int	remains_data(char **backup, char **line, int read_size, char *buf)
 {
 	int	cut_idx;
 
+	if (buf)
+	{
+		free(buf);
+		buf = 0;
+	}
 	if (read_size < 0)
 		return (-1);
 	if (*backup && (cut_idx = is_newline(*backup)) != -1)
@@ -118,7 +123,6 @@ int	remains_data(char **backup, char **line, int read_size, char *buf)
 
 int	get_next_line(int fd, char **line)
 {
-	g_cnt++;
 	int			read_size;
 	char		*buf;
 	static char	*backup;
@@ -135,12 +139,17 @@ int	get_next_line(int fd, char **line)
 		buf[read_size] = '\0';
 		tmp = ft_strjoin(backup, buf);
 		if(backup)
+		{
 			free(backup);
-		backup =tmp;
+			backup = 0;
+		}
+		backup = tmp;
 		if ((cut_idx = is_newline(backup)) != -1)	// backup에 개행이 있으면
+		{
+			printf("buf : %p\n", buf);
 			return (split_line(&backup, line, cut_idx, buf));
+		}
 	}
-	free(buf);
 	return (remains_data(&backup, line, read_size, buf));
 }
 
@@ -153,13 +162,11 @@ int	main(void)
 	fd = open("gnltest.txt", O_RDONLY);
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{
-		printf("(%d)\tline : %s\n\n",g_cnt, line);
+		printf("(%d)\tline : %s\n",g_cnt, line);
 		free(line);
 	}
-		printf("ret: %d\n", ret);
-	printf("(%d)\tline : %s\n\n",g_cnt, line);
+	// printf("ret: %d\n", ret);
+	printf("(%d)\tline : %s\n",g_cnt, line);
 	free(line);
 	return (0);
 }
-
-

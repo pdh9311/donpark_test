@@ -86,10 +86,7 @@ int		get_next_line(int fd, char **line)
 	static char		*save[OPEN_MAX];
 	char			*tmp;
 	char			*buf;
-	printf("fd: %d\n", fd);
-	printf("line: %p\n", line);
-	printf("BUFFER_SIZE: %d\n", BUFFER_SIZE);
-	printf("OPEN_MAX: %d\n", OPEN_MAX);
+	
 	if (fd < 0 || !line || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
 		return (-1);
 	if (!(buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1))))
