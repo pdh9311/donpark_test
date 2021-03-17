@@ -5,7 +5,6 @@
 # include <stdlib.h>
 # include <fcntl.h>
 # include <limits.h>
-# include <stdio.h>
 
 # ifndef BUFFER_SIZE
 #  define BUFFER_SIZE 1

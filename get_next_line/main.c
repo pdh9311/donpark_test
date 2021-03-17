@@ -19,12 +19,13 @@ int main(void)
 	// printf("successed open file | fd: %d\n", fd);
 	while ((ret = get_next_line(fd, &line)) > 0)
 	{	g_cnt++;
-		printf("					(%d) %s\n", g_cnt, line);
+		printf("(%d) %s\n", g_cnt, line);
 		free(line);
 	}
 	g_cnt++;
-	printf("					(%d) %s\n", g_cnt, line);
+	printf("(%d) %s\n", g_cnt, line);
 	free(line);
 
+	close(fd);
 	return (0);
 }

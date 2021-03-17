@@ -96,7 +96,6 @@ int		get_next_line(int fd, char **line)
 		buf[offset] = '\0';
 		if (!(tmp = set_save(save[fd], buf)))//저장된 save[fd]와 받아온 buf로 save[fd]를 구성하는 함수
 			return (-1);
-		printf("1save[fd]:	%s\t%p\n", save[fd], save[fd]);
 		if (save[fd])//옛날 save를 해제시켜줌.
 			free(save[fd]);
 		save[fd] = tmp;

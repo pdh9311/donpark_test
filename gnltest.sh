@@ -18,6 +18,7 @@ cp get_next_line/get_next_line.h ./42cursus_gnl_tests/get_next_line/
 cp get_next_line/get_next_line.c GNL_lover/copy_in_here_GNL_files/
 cp get_next_line/get_next_line_utils.c GNL_lover/copy_in_here_GNL_files/
 cp get_next_line/get_next_line.h GNL_lover/copy_in_here_GNL_files/
+
 #gnlkiller
 cp get_next_line/get_next_line.c gnlkiller/
 cp get_next_line/get_next_line_utils.c gnlkiller/

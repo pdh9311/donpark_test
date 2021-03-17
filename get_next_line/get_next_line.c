@@ -16,7 +16,7 @@ int	is_newline(char *backup)
 
 int	split_line(char **backup, char **line, int cut_idx, char *buf)
 {
-	char	*temp;
+	char	*tmp;
 	int		len;
 
 	if(buf)
@@ -30,9 +30,9 @@ int	split_line(char **backup, char **line, int cut_idx, char *buf)
 		*backup = 0;
 		return (1);
 	}
-	temp = ft_strdup(*backup + cut_idx + 1);
+	tmp = ft_strdup(*backup + cut_idx + 1);
 	free(*backup);
-	*backup = temp;
+	*backup = tmp;
 	return (1);
 }
 
@@ -49,13 +49,13 @@ int	remains_data(char **backup, char **line, int read_size, char *buf)
 		return (-1);
 	if (*backup && (cut_idx = is_newline(*backup)) != -1)
 		return (split_line(backup, line, cut_idx, buf));
-	else if (*backup)
+	if (*backup)
 	{
 		*line = *backup;
 		*backup = 0;
-		return (0);
 	}
-	*line = ft_strdup("");
+	else
+		*line = ft_strdup("");
 	return (0);
 }
 
@@ -73,7 +73,6 @@ int	get_next_line(int fd, char **line)
 		return (-1);
 	while ((read_size = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
-
 		buf[read_size] = '\0';
 		tmp = ft_strjoin(backup, buf);
 		if(backup)
