@@ -151,7 +151,7 @@ int	get_next_line(int fd, char **line)
 
 int	main(void)
 {
-	int		fd1;`
+	int		fd1;
 	int		fd2;
 	char	*line;
 	int		ret;
