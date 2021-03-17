@@ -72,6 +72,11 @@ char	*set_save(char *save, char *buf)
 		tmp = ft_strdup(buf);
 	if (tmp == 0)
 	{
+		if (save)
+		{
+			free(save);
+			save = 0;
+		}
 		free(buf);
 		buf = 0;
 		return (NULL);
@@ -79,14 +84,14 @@ char	*set_save(char *save, char *buf)
 	return (tmp);
 }
 
-int		get_next_line(int fd, char **line)
+int		get_next_line(int fd, char **line)//
 {
 	ssize_t			offset;
 	int				cut_point;
 	static char		*save[OPEN_MAX];
 	char			*tmp;
 	char			*buf;
-	
+
 	if (fd < 0 || !line || BUFFER_SIZE <= 0 || fd > OPEN_MAX)
 		return (-1);
 	if (!(buf = (char *)malloc(sizeof(char) * (BUFFER_SIZE + 1))))
