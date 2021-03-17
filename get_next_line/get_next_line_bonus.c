@@ -1,4 +1,4 @@
-#include "get_next_line.h"
+#include "get_next_line_bonus.h"
 
 int	is_newline(char *backup)
 {
@@ -63,7 +63,7 @@ int	get_next_line(int fd, char **line)
 {
 	int			read_size;
 	char		*buf;
-	static char	*backup;
+	static char	*backup[OPEN_MAX];
 	int			cut_idx;
 	char		*tmp;
 
@@ -74,12 +74,12 @@ int	get_next_line(int fd, char **line)
 	while ((read_size = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[read_size] = '\0';
-		tmp = ft_strjoin(backup, buf);
-		if(backup)
-			free(backup);
-		backup = tmp;
-		if ((cut_idx = is_newline(backup)) != -1)
-			return (split_line(&backup, line, cut_idx, buf));
+		tmp = ft_strjoin(backup[fd], buf);
+		if(backup[fd])
+			free(backup[fd]);
+		backup[fd] = tmp;
+		if ((cut_idx = is_newline(backup[fd])) != -1)
+			return (split_line(&backup[fd], line, cut_idx, buf));
 	}
-	return (remains_data(&backup, line, read_size, buf));
+	return (remains_data(&backup[fd], line, read_size, buf));
 }

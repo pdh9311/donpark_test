@@ -25,7 +25,7 @@ int main(void)
 	g_cnt++;
 	printf("(%d) %s\n", g_cnt, line);
 	free(line);
-
+	
 	close(fd);
 	return (0);
 }
