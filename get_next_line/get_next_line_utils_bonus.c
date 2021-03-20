@@ -1,6 +1,6 @@
 #include "get_next_line_bonus.h"
 
-size_t		ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
 	size_t	i;
 
@@ -26,7 +26,6 @@ char	*ft_strdup(const char *s)
 	new_str[i] = '\0';
 	return (new_str);
 }
-
 
 char	*ft_strjoin(const char *s1, const char *s2)
 {

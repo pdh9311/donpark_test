@@ -16,8 +16,8 @@
 # endif
 
 int		is_newline(char *backup);
-int		split_line(char **backup, char **line, int cut_idx, char *buf);
-int		remains_data(char **backup, char **line, int read_size, char *buf);
+int		split_line(char **backup, char **line, int cut_idx);
+int		remains_data(char **backup, char **line, int read_size);
 int		get_next_line(int fd, char **line);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s);
