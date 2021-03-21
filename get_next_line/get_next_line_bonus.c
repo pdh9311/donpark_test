@@ -52,7 +52,7 @@ int	remains_data(char **backup, char **line, int read_size)
 
 	if (read_size < 0)
 		return (-1);
-	if (*backup && (cut_idx = is_newline(*backup)) > 0)
+	if (*backup && (cut_idx = is_newline(*backup)) != -1)
 		return (split_line(backup, line, cut_idx));
 	if (*backup)
 	{
@@ -83,7 +83,7 @@ int	get_next_line(int fd, char **line)
 		if (backup[fd])
 			free(backup[fd]);
 		backup[fd] = tmp;
-		if ((cut_idx = is_newline(backup[fd])) > 0)
+		if ((cut_idx = is_newline(backup[fd])) != -1)
 		{
 			free(buf);
 			return (split_line(&backup[fd], line, cut_idx));
