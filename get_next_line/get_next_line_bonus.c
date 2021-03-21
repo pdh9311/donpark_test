@@ -6,7 +6,7 @@
 /*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 03:26:41 by donpark           #+#    #+#             */
-/*   Updated: 2021/03/22 03:30:40 by donpark          ###   ########.fr       */
+/*   Updated: 2021/03/22 03:47:13 by donpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int	get_next_line(int fd, char **line)
 		buf[read_size] = '\0';
 		tmp = ft_strjoin(backup[fd], buf);
 		if (backup[fd])
-			free(backup);
+			free(backup[fd]);
 		backup[fd] = tmp;
 		if ((cut_idx = is_newline(backup[fd])) > 0)
 		{

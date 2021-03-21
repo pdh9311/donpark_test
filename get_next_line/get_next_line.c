@@ -6,7 +6,7 @@
 /*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 03:26:41 by donpark           #+#    #+#             */
-/*   Updated: 2021/03/22 03:26:45 by donpark          ###   ########.fr       */
+/*   Updated: 2021/03/22 03:48:21 by donpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ int	remains_data(char **backup, char **line, int read_size)
 
 	if (read_size < 0)
 		return (-1);
-	if (*backup && (cut_idx = is_newline(*backup)) > 0)
+	if (*backup && (cut_idx = is_newline(*backup)) != -1)
 		return (split_line(backup, line, cut_idx));
 	if (*backup)
 	{
@@ -81,9 +81,9 @@ int	get_next_line(int fd, char **line)
 		buf[read_size] = '\0';
 		tmp = ft_strjoin(backup[fd], buf);
 		if (backup[fd])
-			free(backup);
+			free(backup[fd]);
 		backup[fd] = tmp;
-		if ((cut_idx = is_newline(backup[fd])) > 0)
+		if ((cut_idx = is_newline(backup[fd])) != -1)
 		{
 			free(buf);
 			return (split_line(&backup[fd], line, cut_idx));
