@@ -5,7 +5,7 @@
 #include <fcntl.h>
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 100
+# define BUFFER_SIZE 5
 #endif
 
 #ifndef OPEN_MAX
@@ -79,13 +79,11 @@ int	is_newline(char *backup)
 	return (-1);
 }
 
-int	split_line(char **backup, char **line, int cut_idx, char *buf)
+int	split_line(char **backup, char **line, int cut_idx)
 {
 	char	*tmp;
 	int		len;
 
-	if(buf)
-		free(buf);
 	(*backup)[cut_idx] = '\0';
 	*line = ft_strdup(*backup);
 	len = ft_strlen(*backup + cut_idx + 1);
@@ -101,19 +99,14 @@ int	split_line(char **backup, char **line, int cut_idx, char *buf)
 	return (1);
 }
 
-int	remains_data(char **backup, char **line, int read_size, char *buf)
+int	remains_data(char **backup, char **line, int read_size)
 {
 	int	cut_idx;
 
-	if (buf)
-	{
-		free(buf);
-		buf = 0;
-	}
 	if (read_size < 0)
 		return (-1);
 	if (*backup && (cut_idx = is_newline(*backup)) != -1)
-		return (split_line(backup, line, cut_idx, buf));
+		return (split_line(backup, line, cut_idx));
 	if (*backup)
 	{
 		*line = *backup;
@@ -129,8 +122,8 @@ int	get_next_line(int fd, char **line)
 	int			read_size;
 	char		*buf;
 	static char	*backup[OPEN_MAX];
-	int			cut_idx;
 	char		*tmp;
+	int			cut_idx;
 	
 	if (BUFFER_SIZE <= 0 || fd < 0 || fd > OPEN_MAX || !line)
 		return (-1);
@@ -144,9 +137,13 @@ int	get_next_line(int fd, char **line)
 			free(backup[fd]);
 		backup[fd] = tmp;
 		if ((cut_idx = is_newline(backup[fd])) != -1)
-			return (split_line(&backup[fd], line, cut_idx, buf));
+		{
+			free(buf);
+			return (split_line(&backup[fd], line, cut_idx));
+		}
 	}
-	return (remains_data(&backup[fd], line, read_size, buf));
+	free(buf);
+	return (remains_data(&backup[fd], line, read_size));
 }
 
 int	main(void)
@@ -173,7 +170,6 @@ int	main(void)
 		free(line);
 	}
 
-
 	// while ((ret_bonus = get_next_line(fd2, &line)) > 0)
 	// {
 	// 	printf("%s\n", line);
@@ -184,5 +180,7 @@ int	main(void)
 	// 	printf("%s\n",line);
 	// 	free(line);
 	// }
+	close(fd1);
+	close(fd2);
 	return (0);
 }

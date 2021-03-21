@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line_bonus.c                              :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/22 03:26:41 by donpark           #+#    #+#             */
+/*   Updated: 2021/03/22 03:30:40 by donpark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "get_next_line_bonus.h"
 
 int	is_newline(char *backup)
@@ -40,7 +52,7 @@ int	remains_data(char **backup, char **line, int read_size)
 
 	if (read_size < 0)
 		return (-1);
-	if (*backup && (cut_idx = is_newline(*backup)) != -1)
+	if (*backup && (cut_idx = is_newline(*backup)) > 0)
 		return (split_line(backup, line, cut_idx));
 	if (*backup)
 	{
@@ -69,9 +81,9 @@ int	get_next_line(int fd, char **line)
 		buf[read_size] = '\0';
 		tmp = ft_strjoin(backup[fd], buf);
 		if (backup[fd])
-			free(backup[fd]);
+			free(backup);
 		backup[fd] = tmp;
-		if ((cut_idx = is_newline(backup[fd])) != -1)
+		if ((cut_idx = is_newline(backup[fd])) > 0)
 		{
 			free(buf);
 			return (split_line(&backup[fd], line, cut_idx));

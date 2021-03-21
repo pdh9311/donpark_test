@@ -1,8 +1,18 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   get_next_line.h                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/03/22 03:27:48 by donpark           #+#    #+#             */
+/*   Updated: 2021/03/22 03:27:52 by donpark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef GET_NEXT_LINE_H
 # define GET_NEXT_LINE_H
 # include <stdlib.h>
-# include <sys/types.h>
-# include <sys/stat.h>
 # include <fcntl.h>
 # include <unistd.h>
 # include <limits.h>
@@ -12,7 +22,7 @@
 # endif
 
 # ifndef OPEN_MAX
-#  define OPEN_MAX 65536	// sysconf(_SC_OPEN_MAX)
+#  define OPEN_MAX 65536
 # endif
 
 int		is_newline(char *backup);
