@@ -6,7 +6,7 @@
 /*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 03:26:41 by donpark           #+#    #+#             */
-/*   Updated: 2021/03/23 19:49:17 by donpark          ###   ########.fr       */
+/*   Updated: 2021/03/23 20:38:14 by donpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,12 +32,9 @@ int	split_line(char **backup, char **line, int cut_idx, char *buf)
 	int		len;
 
 	if (buf)
-	{
 		free(buf);
-		buf = 0;
-	}
 	(*backup)[cut_idx] = '\0';
-	if ((*line = ft_strdup(*backup)) == 0)
+	if (!(*line = ft_strdup(*backup)))
 		return (-1);
 	len = ft_strlen(*backup + cut_idx + 1);
 	if (len == 0)
@@ -46,7 +43,8 @@ int	split_line(char **backup, char **line, int cut_idx, char *buf)
 		*backup = 0;
 		return (1);
 	}
-	tmp = ft_strdup(*backup + cut_idx + 1);
+	if (!(tmp = ft_strdup(*backup + cut_idx + 1)))
+		return (-1);
 	if (*backup)
 		free(*backup);
 	*backup = tmp;
@@ -72,7 +70,10 @@ int	remains_data(char **backup, char **line, int read_size, char *buf)
 		*backup = 0;
 	}
 	else
-		*line = ft_strdup("");
+	{
+		if (!(*line = ft_strdup("")))
+			return (-1);
+	}
 	return (0);
 }
 
@@ -91,13 +92,10 @@ int	get_next_line(int fd, char **line)
 	while ((read_size = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[read_size] = '\0';
-		if ((tmp = ft_strjoin(backup[fd], buf)) == 0)
+		if (!(tmp = ft_strjoin(backup[fd], buf)))
 			return (-1);
 		if (backup[fd])
-		{
 			free(backup[fd]);
-			backup[fd] = 0;
-		}
 		backup[fd] = tmp;
 		if ((cut_idx = is_newline(backup[fd])) != -1)
 			return (split_line(&backup[fd], line, cut_idx, buf));
