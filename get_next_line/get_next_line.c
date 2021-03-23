@@ -6,7 +6,7 @@
 /*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 03:26:41 by donpark           #+#    #+#             */
-/*   Updated: 2021/03/22 03:48:21 by donpark          ###   ########.fr       */
+/*   Updated: 2021/03/23 19:49:26 by donpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,13 +26,19 @@ int	is_newline(char *backup)
 	return (-1);
 }
 
-int	split_line(char **backup, char **line, int cut_idx)
+int	split_line(char **backup, char **line, int cut_idx, char *buf)
 {
-	char	*temp;
+	char	*tmp;
 	int		len;
 
+	if (buf)
+	{
+		free(buf);
+		buf = 0;
+	}
 	(*backup)[cut_idx] = '\0';
-	*line = ft_strdup(*backup);
+	if ((*line = ft_strdup(*backup)) == 0)
+		return (-1);
 	len = ft_strlen(*backup + cut_idx + 1);
 	if (len == 0)
 	{
@@ -40,20 +46,25 @@ int	split_line(char **backup, char **line, int cut_idx)
 		*backup = 0;
 		return (1);
 	}
-	temp = ft_strdup(*backup + cut_idx + 1);
+	tmp = ft_strdup(*backup + cut_idx + 1);
 	free(*backup);
-	*backup = temp;
+	*backup = tmp;
 	return (1);
 }
 
-int	remains_data(char **backup, char **line, int read_size)
+int	remains_data(char **backup, char **line, int read_size, char *buf)
 {
 	int	cut_idx;
 
+	if (buf)
+	{
+		free(buf);
+		buf = 0;
+	}
 	if (read_size < 0)
 		return (-1);
 	if (*backup && (cut_idx = is_newline(*backup)) != -1)
-		return (split_line(backup, line, cut_idx));
+		return (split_line(backup, line, cut_idx, buf));
 	if (*backup)
 	{
 		*line = *backup;
@@ -79,16 +90,16 @@ int	get_next_line(int fd, char **line)
 	while ((read_size = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[read_size] = '\0';
-		tmp = ft_strjoin(backup[fd], buf);
+		if ((tmp = ft_strjoin(backup[fd], buf)) == 0)
+			return (-1);
 		if (backup[fd])
+		{
 			free(backup[fd]);
+			backup[fd] = 0;
+		}
 		backup[fd] = tmp;
 		if ((cut_idx = is_newline(backup[fd])) != -1)
-		{
-			free(buf);
-			return (split_line(&backup[fd], line, cut_idx));
-		}
+			return (split_line(&backup[fd], line, cut_idx, buf));
 	}
-	free(buf);
-	return (remains_data(&backup[fd], line, read_size));
+	return (remains_data(&backup[fd], line, read_size, buf));
 }

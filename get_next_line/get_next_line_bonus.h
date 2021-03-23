@@ -6,13 +6,16 @@
 /*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/03/22 03:27:48 by donpark           #+#    #+#             */
-/*   Updated: 2021/03/22 03:30:17 by donpark          ###   ########.fr       */
+/*   Updated: 2021/03/23 19:45:37 by donpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef GET_NEXT_LINE_BONUS_H
 # define GET_NEXT_LINE_BONUS_H
 # include <stdlib.h>
+# include <sys/types.h>
+# include <sys/stat.h>
+# include <fcntl.h>
 # include <unistd.h>
 # include <limits.h>
 
@@ -25,8 +28,8 @@
 # endif
 
 int		is_newline(char *backup);
-int		split_line(char **backup, char **line, int cut_idx);
-int		remains_data(char **backup, char **line, int read_size);
+int		split_line(char **backup, char **line, int cut_idx, char *buf);
+int		remains_data(char **backup, char **line, int read_size, char *buf);
 int		get_next_line(int fd, char **line);
 size_t	ft_strlen(const char *s);
 char	*ft_strdup(const char *s1);

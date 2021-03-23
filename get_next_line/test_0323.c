@@ -2,10 +2,12 @@
 #include <unistd.h>
 #include <limits.h>
 #include <stdlib.h>
+#include <sys/types.h>
+#include <sys/stat.h>
 #include <fcntl.h>
 
 #ifndef BUFFER_SIZE
-# define BUFFER_SIZE 5
+# define BUFFER_SIZE 1
 #endif
 
 #ifndef OPEN_MAX
@@ -79,13 +81,19 @@ int	is_newline(char *backup)
 	return (-1);
 }
 
-int	split_line(char **backup, char **line, int cut_idx)
+int	split_line(char **backup, char **line, int cut_idx, char *buf)
 {
 	char	*tmp;
 	int		len;
 
+	if (buf)
+	{
+		free(buf);
+		buf = 0;
+	}
 	(*backup)[cut_idx] = '\0';
-	*line = ft_strdup(*backup);
+	if ((*line = ft_strdup(*backup)) == 0)
+		return (-1);
 	len = ft_strlen(*backup + cut_idx + 1);
 	if (len == 0)
 	{
@@ -99,14 +107,19 @@ int	split_line(char **backup, char **line, int cut_idx)
 	return (1);
 }
 
-int	remains_data(char **backup, char **line, int read_size)
+int	remains_data(char **backup, char **line, int read_size, char *buf)
 {
 	int	cut_idx;
 
+	if (buf)
+	{
+		free(buf);
+		buf = 0;
+	}
 	if (read_size < 0)
 		return (-1);
 	if (*backup && (cut_idx = is_newline(*backup)) != -1)
-		return (split_line(backup, line, cut_idx));
+		return (split_line(backup, line, cut_idx, buf));
 	if (*backup)
 	{
 		*line = *backup;
@@ -121,9 +134,9 @@ int	get_next_line(int fd, char **line)
 {
 	int			read_size;
 	char		*buf;
-	static char	*backup[OPEN_MAX];
-	char		*tmp;
+	static char	*backup[OPEN_MAX + 1];
 	int			cut_idx;
+	char		*tmp;
 	
 	if (BUFFER_SIZE <= 0 || fd < 0 || fd > OPEN_MAX || !line)
 		return (-1);
@@ -132,55 +145,36 @@ int	get_next_line(int fd, char **line)
 	while ((read_size = read(fd, buf, BUFFER_SIZE)) > 0)
 	{
 		buf[read_size] = '\0';
-		tmp = ft_strjoin(backup[fd], buf);
+		if ((tmp = ft_strjoin(backup[fd], buf)) == 0)
+			return (-1);
 		if(backup[fd])
+		{
 			free(backup[fd]);
+			backup[fd] = 0;
+		}
 		backup[fd] = tmp;
 		if ((cut_idx = is_newline(backup[fd])) != -1)
-		{
-			free(buf);
-			return (split_line(&backup[fd], line, cut_idx));
-		}
+			return (split_line(&backup[fd], line, cut_idx, buf));
 	}
-	free(buf);
-	return (remains_data(&backup[fd], line, read_size));
+	return (remains_data(&backup[fd], line, read_size, buf));
 }
 
 int	main(void)
 {
-	int		fd1;
-	int		fd2;
+	int		fd;
 	char	*line;
 	int		ret;
-	int		ret_bonus;
-	int		g_cnt = 0;
+	int		cnt = 0;
 
-	fd1 = open("gnltest.txt", O_RDONLY);
-	fd2 = open("gnlbonustest.txt", O_RDONLY);
-	while ((ret = get_next_line(fd1, &line)) > 0)
+	fd = open("gnltest.txt", O_RDONLY);
+	while ((ret = get_next_line(fd, &line)) > 0)
 	{
-		g_cnt++;
-		printf("(%d) %s\n", g_cnt, line);
+		cnt++;
+		printf("(%d) %s\n", cnt, line);
 		free(line);
 	}
-	g_cnt++;
-	if (ret == 0)
-	{
-		printf("(%d) %s\n", g_cnt, line);
-		free(line);
-	}
-
-	// while ((ret_bonus = get_next_line(fd2, &line)) > 0)
-	// {
-	// 	printf("%s\n", line);
-	// 	free(line);
-	// }
-	// if (ret_bonus == 0)
-	// {
-	// 	printf("%s\n",line);
-	// 	free(line);
-	// }
-	close(fd1);
-	close(fd2);
+	printf("(%d) %s\n", cnt, line);
+	free(line);
+	close(fd);
 	return (0);
 }
