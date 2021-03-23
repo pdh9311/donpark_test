@@ -68,7 +68,7 @@ int	get_next_line(int fd, char **line)
 {
 	int			read_size;
 	char		*buf;
-	static char	*backup[OPEN_MAX];
+	static char	*backup[OPEN_MAX + 1];
 	int			cut_idx;
 	char		*tmp;
 
