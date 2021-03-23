@@ -47,7 +47,8 @@ int	split_line(char **backup, char **line, int cut_idx, char *buf)
 		return (1);
 	}
 	tmp = ft_strdup(*backup + cut_idx + 1);
-	free(*backup);
+	if (*backup)
+		free(*backup);
 	*backup = tmp;
 	return (1);
 }
@@ -93,10 +94,7 @@ int	get_next_line(int fd, char **line)
 		if ((tmp = ft_strjoin(backup[fd], buf)) == 0)
 			return (-1);
 		if (backup[fd])
-		{
 			free(backup[fd]);
-			backup[fd] = 0;
-		}
 		backup[fd] = tmp;
 		if ((cut_idx = is_newline(backup[fd])) != -1)
 			return (split_line(&backup[fd], line, cut_idx, buf));

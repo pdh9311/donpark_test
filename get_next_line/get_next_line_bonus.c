@@ -47,7 +47,8 @@ int	split_line(char **backup, char **line, int cut_idx, char *buf)
 		return (1);
 	}
 	tmp = ft_strdup(*backup + cut_idx + 1);
-	free(*backup);
+	if (*backup)
+		free(*backup);
 	*backup = tmp;
 	return (1);
 }
