@@ -14,4 +14,4 @@ rm -rf ft_printf/printf-tester
 #
 cd ft_printf
 make fclean
-rm -rf *.gch
+rm -rf *.gch *.out
