@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   ft_itoa.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: donpark <donpark@student.42seoul.k>        +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/01/16 06:58:40 by donpark           #+#    #+#             */
-/*   Updated: 2021/05/01 01:33:52 by donpark          ###   ########.fr       */
+/*   Updated: 2021/01/25 12:39:44 by donpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-size_t	ft_numlen(ssize_t n)
+size_t	ft_numlen(int n)
 {
 	size_t	i;
 
@@ -27,7 +27,7 @@ size_t	ft_numlen(ssize_t n)
 	return (i);
 }
 
-char	*ft_itoa(ssize_t n)
+char	*ft_itoa(int n)
 {
 	char	*str;
 	int		sign;
