@@ -101,8 +101,37 @@ void	unint_test()
 	printf("%%5.u\t: |%5.u|\t(0)\n", 0);
 	printf("%%5.0u\t: |%5.0u|\t(0)\n", 0);
 
+}
+
+void	flag0_test()
+{
+	printf("%%05%%\t: |%%|\n");
+	printf("%%05d\t: |%05d|\n", 1);
+	printf("%%05i\t: |%05i|\n", 2);
+	printf("%%05u\t: |%05u|\n", 3);
+	printf("%%05x\t: |%05x|\n", 123);
+	printf("%%05X\t: |%05X|\n\n", 123);
+
+//	printf("%%05c\t: |%05c|\n", 'a');		// warning
+//	printf("%%05s\t: |%05s|\n", "test");	// warning
+//	printf("%%05p\t: |%05p|\n", "test");	// warning
 
 }
+
+void	pointer_test()
+{
+	printf("%%p\t: |%p|\n", 17);
+	printf("%%p\t: |%p|\n", "test");
+	printf("%%.p\t: |%.p|\n", "test");
+	printf("%%.0p\t: |%.0p|\n", "test");			// warning
+	printf("%%.5p\t: |%.5p|\n", "test");			// warning
+	printf("%%.*p\t: |%.*p|\t(5)\n", 5, "test");	// warning
+	printf("%%.*p\t: |%.*p|\t(-5)\n", -5, "test");	// warning
+	printf("%%020p\t: |%020p|\n", "test");			// warning
+	printf("%%20p\t: |%20p|\n", "test");			// warning
+
+}
+
 int		main(int argc, char *argv[])
 {
 	if (argc == 2)
@@ -132,6 +161,16 @@ int		main(int argc, char *argv[])
 			printf("================unint_test======================\n");
 			unint_test();
 		}
+		else if (!strcmp(argv[1], "flag0"))
+		{
+			printf("================flag0_test======================\n");
+			flag0_test();
+		}
+		else if (!strcmp(argv[1], "pointer"))
+		{
+			printf("================pointer_test====================\n");
+			pointer_test();
+		}
 	}
 	else
 	{
@@ -145,6 +184,10 @@ int		main(int argc, char *argv[])
 		int_test();
 		printf("================unint_test======================\n");
 		unint_test();
+		printf("================flag0_test======================\n");
+		flag0_test();
+		printf("================pointer_test====================\n");
+		pointer_test();
 
 	}
 	return (0);
