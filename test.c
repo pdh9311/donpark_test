@@ -74,16 +74,34 @@ void	int_test()
 	printf("[opt]\t  [print]\t[arg]\n---------------------------------\n");
 
 	printf("%%d\t: |%d|\t(10)\n", 10);
-	printf("%%d\t: |%d|\t(0)\n", 0);
+	printf("%%d\t: |%d|\t(0)\n\n", 0);
 //	printf("%%.-5d\t: |%.-5d|\t(10)\n", 10);		// warning
 
+	// precision is 0 && variable arg is 0 
 	printf("%%.d\t: |%.d|\t(0)\n", 0);
 	printf("%%.0d\t: |%.0d|\t(0)\n", 0);
 	printf("%%5.d\t: |%5.d|\t(0)\n", 0);
 	printf("%%5.0d\t: |%5.0d|\t(0)\n", 0);
 
 	printf("%%5.d\t: |%5.d|\t(1)\n", 1);
-	printf("%%5.0d\t: |%5.0d|\t(1)\n", 1);
+	printf("%%5.0d\t: |%5.0d|\t(1)\n\n", 1);
+
+	// precision value > numlen
+	printf("%%.5d\t: |%.5d|\n", 12);
+	printf("%%.9d\t: |%.9d|\n\n", 12);
+	// precision value <= numlen
+	printf("%%.d\t: |%.d|\n", 12345);
+	printf("%%.0d\t: |%.0d|\n", 12345);
+	printf("%%.*d\t: |%.*d|\n", -5, 12345);
+	printf("%%.3d\t: |%.3d|\n", 12345);
+	printf("%%.5d\t: |%.5d|\n\n", 12345);
+
+	printf("%%8.5d\t: |%8.5d|\n", 12);
+	printf("%%08.5d\t: |%08.5d|\n", 12);
+	printf("%%08d\t: |%08d|\n\n", 12);
+	printf("%%8.5d\t: |%8.5d|\n", -12);
+	printf("%%08.5d\t: |%08.5d|\n",-12);
+	printf("%%08d\t: |%08d|\n", -12);
 
 
 }
@@ -120,15 +138,15 @@ void	flag0_test()
 
 void	pointer_test()
 {
-	printf("%%p\t: |%p|\n", 17);
+//	printf("%%p\t: |%p|\n", 17);		// wanring
 	printf("%%p\t: |%p|\n", "test");
 	printf("%%.p\t: |%.p|\n", "test");
-	printf("%%.0p\t: |%.0p|\n", "test");			// warning
-	printf("%%.5p\t: |%.5p|\n", "test");			// warning
-	printf("%%.*p\t: |%.*p|\t(5)\n", 5, "test");	// warning
-	printf("%%.*p\t: |%.*p|\t(-5)\n", -5, "test");	// warning
-	printf("%%020p\t: |%020p|\n", "test");			// warning
-	printf("%%20p\t: |%20p|\n", "test");			// warning
+//	printf("%%.0p\t: |%.0p|\n", "test");			// warning
+//	printf("%%.5p\t: |%.5p|\n", "test");			// warning
+//	printf("%%.*p\t: |%.*p|\t(5)\n", 5, "test");	// warning
+//	printf("%%.*p\t: |%.*p|\t(-5)\n", -5, "test");	// warning
+//	printf("%%020p\t: |%020p|\n", "test");			// warning
+//	printf("%%20p\t: |%20p|\n", "test");			// warning
 
 }
 
