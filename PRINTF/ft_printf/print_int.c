@@ -34,8 +34,10 @@ void	no_hyphen2(char *str, int blank, t_info info, int sign)
 	flag = 0;
 	str_len = ft_strlen(str);
 	p_blank = (info.p_num > str_len) ? (info.p_num - str_len) : 0;
-	hy_zero = (info.zero == YES && (info.p_exist == NODOT || info.p_num < 0)) ? "0" : " ";
-	if (sign < 0 && info.zero == YES && blank > 0 && (info.p_num < 0 || info.p_exist == NODOT))
+	hy_zero = (info.zero == YES &&
+			(info.p_exist == NODOT || info.p_num < 0)) ? "0" : " ";
+	if (sign < 0 && info.zero == YES && blank > 0 &&
+			(info.p_num < 0 || info.p_exist == NODOT))
 	{
 		write(1, "-", 1);
 		flag = 1;

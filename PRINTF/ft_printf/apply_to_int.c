@@ -14,7 +14,8 @@
 
 int		check_zero(t_info info, ssize_t num, int *ret)
 {
-	if (num == 0 && ((info.p_exist == DOTNUM && info.p_num == 0) || info.p_exist == ONLYDOT))
+	if (num == 0 && ((info.p_exist == DOTNUM && info.p_num == 0)
+				|| info.p_exist == ONLYDOT))
 	{
 		*ret += info.w_num;
 		while (info.w_num--)

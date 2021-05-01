@@ -43,7 +43,8 @@ int		apply_to_str(va_list ap, char *tag, t_info info, int *ret)
 
 	if ((str = va_arg(ap, char *)) == NULL)
 		str = "(null)";
-	if (info.zero == YES || (info.p_exist == DOTNUM && info.p_num < 0 && info.p_star == NO))
+	if (info.zero == YES ||
+			(info.p_exist == DOTNUM && info.p_num < 0 && info.p_star == NO))
 		return (0);
 	if ((info.p_exist == DOTNUM && info.p_num == 0) || info.p_exist == ONLYDOT)
 	{
