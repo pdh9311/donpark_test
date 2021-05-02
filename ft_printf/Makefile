@@ -23,9 +23,7 @@ $(NAME) : $(OBJS)
 	make all -C $(LIBFT)
 	cp ./$(LIBFT)/$(LIBFT_LIB) ./$(NAME)
 	$(AR) $@ $^
-# -C dir
-# Makefile을 계속 읽지 말고 우선은 dir로 이동하라는 것이다.
-# http://doc.kldp.org/KoreanDoc/html/GNU-Make/GNU-Make-5.html
+
 clean :
 	rm -f $(OBJS)
 	make clean -C $(LIBFT)

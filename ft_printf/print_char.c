@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   print_char.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/02 05:30:16 by donpark           #+#    #+#             */
+/*   Updated: 2021/05/02 05:30:16 by donpark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 void	is_hyphen1(char *hy_zero, char *str, int blank, size_t len)
@@ -34,15 +46,3 @@ int		print_char(char *tag, char *str, t_info info, size_t len)
 		no_hyphen1(hy_zero, str, blank, len);
 	return (ret);
 }
-/* [flag]의 0 옵션은 숫자와 %에만 적용된다. 
-	printf("%%05%%\t: |%%|\n");
-	printf("%%05d\t: |%05d|\n", 1);
-	printf("%%05i\t: |%05i|\n", 2);
-	printf("%%05u\t: |%05u|\n", 3);
-	printf("%%05x\t: |%05x|\n", 123);
-	printf("%%05X\t: |%05X|\n\n", 123);
-
-//  printf("%%05c\t: |%05c|\n", 'a');		// warning
-//  printf("%%05s\t: |%05s|\n", "test");	// warning
-//  printf("%%05p\t: |%05p|\n", "test");	// warning
-*/

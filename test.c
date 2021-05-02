@@ -138,6 +138,8 @@ void	flag0_test()
 
 void	pointer_test()
 {
+	void	*ptr = NULL;
+
 	printf("%%p\t: |%p|\n", 17);		// wanring
 	printf("%%p\t: |%p|\n", "test");
 	printf("%%.p\t: |%.p|\n", "test");
@@ -146,10 +148,32 @@ void	pointer_test()
 	printf("%%.*p\t: |%.*p|\t(5)\n", 5, "test");	// warning
 	printf("%%.*p\t: |%.*p|\t(-5)\n", -5, "test");	// warning
 	printf("%%020p\t: |%020p|\n", "test");			// warning
-	printf("%%20p\t: |%20p|\n", "test");			// warning
+	printf("%%20p\t: |%20p|\n\n", "test");			// warning
+	
+	printf("%%p\t: |%p|\n", ptr);
+	printf("%%.p\t: |%.p|\n", ptr);
+	printf("%%8.p\t: |%8.p|\n", ptr);
 
 }
 
+void	hex_test()
+{
+	printf("%%x\t: |%x|\n", 123);
+	printf("%%x\t: |%x|\n", -123);
+	printf("%%.-5x\t: |%.-5x|\n", 123);			// warning
+	printf("%%.*x\t: |%.*x|\n\n", -5, 123);
+
+	printf("%%.x\t: |%.x|\t(0)\n", 0);
+	printf("%%.0x\t: |%.0x|\t(0)\n", 0);
+	printf("%%5.x\t: |%5.x|\t(0)\n", 0);
+	printf("%%5.0x\t: |%5.0x|\t(0)\n", 0);
+
+	printf("%%5.x\t: |%5.x|\t(1)\n", 1);
+	printf("%%5.0x\t: |%5.0x|\t(1)\n\n", 1);
+
+
+
+}
 int		main(int argc, char *argv[])
 {
 	if (argc == 2)
@@ -189,6 +213,11 @@ int		main(int argc, char *argv[])
 			printf("================pointer_test====================\n");
 			pointer_test();
 		}
+		else if (!strcmp(argv[1], "hex"))
+		{
+			printf("================pointer_test====================\n");
+			hex_test();
+		}
 	}
 	else
 	{
@@ -206,6 +235,8 @@ int		main(int argc, char *argv[])
 		flag0_test();
 		printf("================pointer_test====================\n");
 		pointer_test();
+		printf("================pointer_test====================\n");
+		hex_test();
 
 	}
 	return (0);
