@@ -26,8 +26,6 @@ char	*check_flag(char *tag, t_info *info)
 			info->zero = 1;
 		tag++;
 	}
-	if (*tag == '\0')
-		return (0);
 	return (tag);
 }
 
