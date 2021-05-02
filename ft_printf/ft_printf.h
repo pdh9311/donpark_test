@@ -1,5 +1,6 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
+
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdlib.h>
@@ -28,7 +29,7 @@ int		parse_format(va_list ap, char *format);
 int		ft_printf(const char *format, ...);
 
 char	*check_flag(char *tag, t_info *info);
-int		star_num(va_list ap, char **tag, int *error, t_info *info);
+int		w_p_star_num(va_list ap, char **tag, int *error, t_info *info);
 char	*check_width(va_list ap, char *tag, t_info *info);
 char	*check_precision(va_list ap, char *tag, t_info *info);
 char	*check_info(va_list ap, char *tag, t_info *info);

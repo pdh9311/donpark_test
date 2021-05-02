@@ -16,7 +16,7 @@ void	percent_test()
 	printf("%%1%%\t: |%1%|\n");
 	printf("%%0%%\t: |%0%|\n\n");
 
-//	printf("%%5.-5%%\t: |%5.-5%|\n");		// warning
+	printf("%%5.-5%%\t: |%5.-5%|\n");		// warning
 	printf("%%5.*%%\t: |%5.*%|\t(-5)\n", -5);
 	printf("%%5.%%\t: |%5.%|\n");
 	printf("%%5.0%%\t: |%5.0%|\n");
@@ -31,17 +31,17 @@ void	char_test()
 	printf("[opt]\t  [print]\t[arg]\n---------------------------------\n");
 
 	printf("%%c\t: |%c|\n", 'a');
-//	printf("%%0c\t: |%0c|\n", 'a');			// warning
+	printf("%%0c\t: |%0c|\n", 'a');			// warning
 	printf("%%.c\t: |%.c|\n", 'a');	
-//	printf("%%.0c\t: |%.0c|\n", 'a');		// warning
-//	printf("%%.5c\t: |%.5c|\n", 'a');		// warning
-//	printf("%%.*c\t: |%.*c|\n", 0, 'a');	// warning
-//	printf("%%.*c\t: |%.*c|\n", 3, 'a');	// warning
+	printf("%%.0c\t: |%.0c|\n", 'a');		// warning
+	printf("%%.5c\t: |%.5c|\n", 'a');		// warning
+	printf("%%.*c\t: |%.*c|\n", 0, 'a');	// warning
+	printf("%%.*c\t: |%.*c|\n", 3, 'a');	// warning
 
 	printf("%%5c\t: |%5c|\n", 'a');
-//	printf("%%05c\t: |%05c|\n", 'a');		// warning
+	printf("%%05c\t: |%05c|\n", 'a');		// warning
 	printf("%%-5c\t: |%-5c|\n", 'a');
-//	printf("%%-05c\t: |%-05c|\n", 'a');		// warning
+	printf("%%-05c\t: |%-05c|\n", 'a');		// warning
 }
 
 void	str_test()
@@ -54,8 +54,8 @@ void	str_test()
 
 	printf("%%s\t: |%s|\n", str);
 	printf("%%s\t: |%s|\t(null)\n", null_value);
-//	printf("%%0s\t: |%0s|\n", str);					// warning
-//	printf("%%.-5s\t: |%.-5s|\n", str);				// warning
+	printf("%%0s\t: |%0s|\n", str);					// warning
+	printf("%%.-5s\t: |%.-5s|\n", str);				// warning
 	printf("%%.*s\t: |%.*s|\t(-5)\n\n", -5, str);
 
 	printf("%%.s\t: |%.s|\n", str);
@@ -75,7 +75,7 @@ void	int_test()
 
 	printf("%%d\t: |%d|\t(10)\n", 10);
 	printf("%%d\t: |%d|\t(0)\n\n", 0);
-//	printf("%%.-5d\t: |%.-5d|\t(10)\n", 10);		// warning
+	printf("%%.-5d\t: |%.-5d|\t(10)\n", 10);		// warning
 
 	// precision is 0 && variable arg is 0 
 	printf("%%.d\t: |%.d|\t(0)\n", 0);
@@ -112,7 +112,7 @@ void	unint_test()
 	printf("[opt]\t  [print]\t[arg]\n---------------------------------\n");
 	
 	printf("%%u\t: |%u|\t(10)\n", 10);
-//	printf("%%.-5u\t: |%.-5u|\t(10)\n", 10);		// warning
+	printf("%%.-5u\t: |%.-5u|\t(10)\n", 10);		// warning
 
 	printf("%%.u\t: |%.u|\t(0)\n", 0);
 	printf("%%.0u\t: |%.0u|\t(0)\n", 0);
@@ -130,23 +130,23 @@ void	flag0_test()
 	printf("%%05x\t: |%05x|\n", 123);
 	printf("%%05X\t: |%05X|\n\n", 123);
 
-//	printf("%%05c\t: |%05c|\n", 'a');		// warning
-//	printf("%%05s\t: |%05s|\n", "test");	// warning
-//	printf("%%05p\t: |%05p|\n", "test");	// warning
+	printf("%%05c\t: |%05c|\n", 'a');		// warning
+	printf("%%05s\t: |%05s|\n", "test");	// warning
+	printf("%%05p\t: |%05p|\n", "test");	// warning
 
 }
 
 void	pointer_test()
 {
-//	printf("%%p\t: |%p|\n", 17);		// wanring
+	printf("%%p\t: |%p|\n", 17);		// wanring
 	printf("%%p\t: |%p|\n", "test");
 	printf("%%.p\t: |%.p|\n", "test");
-//	printf("%%.0p\t: |%.0p|\n", "test");			// warning
-//	printf("%%.5p\t: |%.5p|\n", "test");			// warning
-//	printf("%%.*p\t: |%.*p|\t(5)\n", 5, "test");	// warning
-//	printf("%%.*p\t: |%.*p|\t(-5)\n", -5, "test");	// warning
-//	printf("%%020p\t: |%020p|\n", "test");			// warning
-//	printf("%%20p\t: |%20p|\n", "test");			// warning
+	printf("%%.0p\t: |%.0p|\n", "test");			// warning
+	printf("%%.5p\t: |%.5p|\n", "test");			// warning
+	printf("%%.*p\t: |%.*p|\t(5)\n", 5, "test");	// warning
+	printf("%%.*p\t: |%.*p|\t(-5)\n", -5, "test");	// warning
+	printf("%%020p\t: |%020p|\n", "test");			// warning
+	printf("%%20p\t: |%20p|\n", "test");			// warning
 
 }
 
