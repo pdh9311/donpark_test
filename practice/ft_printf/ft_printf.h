@@ -13,7 +13,6 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
-# include <stdio.h>
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdlib.h>
@@ -34,7 +33,7 @@ typedef struct	s_info
 	int			p_star;
 }				t_info;
 
-void			print_info(t_info info);
+char			*ft_strchr(char *s, char c);
 
 void			init_info(t_info *info);
 char			*manage_type(va_list ap, char *tag, t_info info, int *ret);
