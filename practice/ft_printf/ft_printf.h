@@ -13,10 +13,10 @@
 #ifndef FT_PRINTF_H
 # define FT_PRINTF_H
 
+# include <stdio.h>
 # include <unistd.h>
 # include <stdarg.h>
 # include <stdlib.h>
-# include "./libft/libft.h"
 # define ONLYDOT 2
 # define DOTNUM 1
 # define NODOT 0
@@ -34,6 +34,12 @@ typedef struct	s_info
 }				t_info;
 
 char			*ft_strchr(char *s, char c);
+size_t			ft_strlen(char *str);
+void			*ft_calloc(size_t count, int type);
+size_t			ft_numlen(ssize_t n);
+char			*ft_itoa(ssize_t num);
+char			*ft_strdup(char *str);
+char			*ft_strjoin(char *s1, char *s2);
 
 void			init_info(t_info *info);
 char			*manage_type(va_list ap, char *tag, t_info info, int *ret);

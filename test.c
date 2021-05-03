@@ -101,8 +101,17 @@ void	int_test()
 	printf("%%08d\t: |%08d|\n\n", 12);
 	printf("%%8.5d\t: |%8.5d|\n", -12);
 	printf("%%08.5d\t: |%08.5d|\n",-12);
-	printf("%%08d\t: |%08d|\n", -12);
+	printf("%%08d\t: |%08d|\n\n", -12);
 
+	/// flag include 0
+	// NODOT , p_num < 0 (if precision is minus, it ignored)
+	printf("%%08d\t: |%08d|\n", 12);
+	printf("%%08.*d\t: |%08.*d|\n", -3, 12);
+
+	// precision exist, expression up to precision 
+	printf("%%08.d\t: |%08.d|\n", 12);
+	printf("%%08.0d\t: |%08.0d|\n", 12);
+	printf("%%08.3d\t: |%08.3d|\n", 12);
 
 }
 

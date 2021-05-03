@@ -64,7 +64,7 @@ int		parse_format(va_list ap, char *format)
 			init_info(&tag_info);
 			if (!(curr = check_info(ap, curr, &tag_info)))
 				return (-1);
-			print_info(tag_info);
+//			print_info(tag_info);
 			if (!(curr = manage_type(ap, curr, tag_info, &ret)))
 				return (-1);
 		}

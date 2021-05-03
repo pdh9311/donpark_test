@@ -4,9 +4,10 @@ CC = gcc
 CFLAGS = -Wall -Wextra -Werror
 AR = ar rcs
 
-SRCS = ft_printf.c 	check_info.c chg_to_hex.c \
+SRCS = ft_printf.c 	check_info.c \
 	apply_to_char.c apply_to_int.c \
-	print_int.c print_char.c utils.c
+	print_int.c print_char.c \
+   	utils1.c utils2.c
 OBJS = $(SRCS:.c=.o)
 
 

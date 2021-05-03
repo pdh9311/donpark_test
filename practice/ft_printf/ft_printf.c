@@ -1,4 +1,6 @@
- *info)
+#include "ft_printf.h"
+
+void	init_info(t_info *info)
 {
 	info->hyphen = 0;
 	info->zero = 0;
@@ -26,7 +28,7 @@ char	*manage_type(va_list ap, char *type, t_info info, int *ret)
 	else if (*type == 'u')
 		error_check = apply_to_unint(ap, info, ret);
 	else if (*type == 'x' || *type == 'X')
-		error_check = apply_to_hex(ap, info, ret);
+		error_check = apply_to_hex(ap, type, info, ret);
 	else
 		return (0);
 	if (!error_check)
@@ -60,6 +62,7 @@ int		parse_format(va_list ap, char *format)
 		}
 		curr++;
 	}
+	return (ret);
 }
 
 int		ft_printf(const char *format, ...)
