@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils1.c                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: donpark <donpark@student.42seoul.k>        +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/05/04 14:59:26 by donpark           #+#    #+#             */
+/*   Updated: 2021/05/04 15:00:33 by donpark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "ft_printf.h"
 
 char	*ft_strchr(char *str, char c)
@@ -28,7 +40,7 @@ size_t	ft_strlen(char *str)
 
 void	*ft_calloc(size_t count, int type)
 {
-	void 	*ret;
+	void	*ret;
 	size_t	i;
 
 	i = 0;

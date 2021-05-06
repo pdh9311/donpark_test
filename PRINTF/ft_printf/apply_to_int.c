@@ -6,7 +6,7 @@
 /*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/05/02 05:28:33 by donpark           #+#    #+#             */
-/*   Updated: 2021/05/02 05:30:45 by donpark          ###   ########.fr       */
+/*   Updated: 2021/05/04 14:58:21 by donpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ int		check_zero(t_info info, ssize_t num, int *ret)
 int		apply_to_int(va_list ap, t_info info, int *ret)
 {
 	char		*int_str;
-	ssize_t		num;
+	int			num;
 	int			sign;
 
 	sign = 1;
@@ -38,7 +38,7 @@ int		apply_to_int(va_list ap, t_info info, int *ret)
 		sign *= -1;
 		(*ret)++;
 	}
-	if (!(int_str = ft_itoa(num * sign)))
+	if (!(int_str = ft_itoa((ssize_t)num * sign)))
 		return (0);
 	if (info.p_num < 0 && info.p_star == NO)
 		return (0);
@@ -58,7 +58,7 @@ int		apply_to_unint(va_list ap, t_info info, int *ret)
 
 	sign = 1;
 	un_num = va_arg(ap, unsigned int);
-	if (!(unint_str = ft_itoa(un_num)))
+	if (!(unint_str = ft_itoa((ssize_t)un_num)))
 		return (0);
 	if (info.p_num < 0 && info.p_star == NO)
 		return (0);
