@@ -189,7 +189,7 @@ char	*ft_strndup(char *s, int n)
 	char 	*ptr;
 	
 //	printf("\nn: %d\n", n);
-	if (!(ptr = (char *)malloc(sizeof(char *) * (n + 1))))
+	if (!(ptr = (char *)malloc(sizeof(char) * (n + 1))))
 		return (NULL);
 	i = 0;
 	while (s[i] && i < n)
@@ -270,10 +270,11 @@ int	ft_printf(const char *s, ...)
 	va_end(ap);
 	return (ret);
 }
-/*
+#include <stdio.h>
 int main(void)
 {
-	ft_printf("[%5d][%5.d][%5.3d][%.3d][%d]", 123456,123456,123456,123456,123456);
+	ft_printf("[%5.4s][%8.6d][%3.5x]", "abcdef", -1000, 999999);
+	printf("\n[%5.4s][%8.6d][%3.5x]\n", "abcdef", -1000, 999999);
 	return (0);
 }
-*/
+
