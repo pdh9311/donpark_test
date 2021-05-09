@@ -1,7 +1,4 @@
 #include "get_next_line.h"
-# include <sys/types.h>
-# include <sys/stat.h>
-# include <fcntl.h>
 #include <stdio.h>
 
 int	g_cnt;
@@ -23,6 +20,6 @@ int main(void)
 	free(line);
 	line = NULL;
 	printf("============================\n");
-	while (1) {}
+//	while (1) {}
 	return (0);
 }
