@@ -23,6 +23,6 @@ int main(void)
 	free(line);
 	line = NULL;
 	printf("============================\n");
-	while (1) {}
+//	while (1) {}
 	return (0);
 }

@@ -135,8 +135,8 @@ int		get_next_line(char **line)
 		buf[read_size] = '\0';
 		if (!(tmp = ft_strjoin(backup, buf)))
 			return (-1);
-//		if (backup)
-//			free(backup);
+		if (backup)
+			free(backup);
 		backup = tmp;
 		if ((cut_idx = is_newline(backup)) != -1)
 			return (split_line(&backup, line, cut_idx, buf));
