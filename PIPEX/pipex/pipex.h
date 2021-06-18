@@ -6,7 +6,7 @@
 /*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 04:09:38 by donpark           #+#    #+#             */
-/*   Updated: 2021/06/19 04:09:39 by donpark          ###   ########.fr       */
+/*   Updated: 2021/06/19 05:06:55 by donpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,11 +40,12 @@ void	run_only_cmd1(char **argv, char **env);
 
 void	run_cmd1(int **fd, int *i, char **argv, char **env);
 
-void	heredoc_re_conn_cmd(int **fd, int *i, char **argv, char **env);
-void	re_conn_cmd(int **fd, int *i, char **argv, char **env);
+void	child_heredoc_n(int **fd, int *i, char **argv, char **env);
+void	child_n(int **fd, int *i, char **argv, char **env);
 void	run_cmdn(int **fd, int *i, char **argv, char **env);
-void	heredoc_conn2_cmd(int **fd, int *i, char **argv, char **env);
-void	conn2_cmd(int **fd, int *i, char **argv, char **env);
+
+void	child_heredoc_mid(int **fd, int *i, char **argv, char **env);
+void	child_mid(int **fd, int *i, char **argv, char **env);
 void	run_cmd_mid(int **fd, int *i, char **argv, char **env);
 
 int		memory_free(char **mem);

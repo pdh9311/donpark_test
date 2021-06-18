@@ -6,26 +6,25 @@
 /*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 04:09:34 by donpark           #+#    #+#             */
-/*   Updated: 2021/06/19 04:30:32 by donpark          ###   ########.fr       */
+/*   Updated: 2021/06/19 05:08:03 by donpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	heredoc_conn2_cmd(int **fd, int *i, char **argv, char **env)
+void	child_heredoc_mid(int **fd, int *i, char **argv, char **env)
 {
 	connect_pipe(fd, (*i) - 4, STDIN_FILENO);	// pipe → stdin		// cmd=3이면, argc=6, (*i)=3, pipe: fd[0][2]
 	connect_pipe(fd, (*i) - 3, STDOUT_FILENO);	// stdout → pipe	// cmd=3이면, argc=6, (*i)=3, pipe: fd[1][2]
 	cmd_execve(argv[(*i)], env);
 }
 
-void	conn2_cmd(int **fd, int *i, char **argv, char **env)
+void	child_mid(int **fd, int *i, char **argv, char **env)
 {
 	connect_pipe(fd, (*i) - 3, STDIN_FILENO);	// pipe → stdin		// cmd=3이면, argc=6, (*i)=3, pipe: fd[0][2]
 	connect_pipe(fd, (*i) - 2, STDOUT_FILENO);	// stdout → pipe	// cmd=3이면, argc=6, (*i)=3, pipe: fd[1][2]
 	cmd_execve(argv[(*i)], env);
 }
-
 
 void	run_cmd_mid(int **fd, int *i, char **argv, char **env)
 {
@@ -33,16 +32,13 @@ void	run_cmd_mid(int **fd, int *i, char **argv, char **env)
 	int		status;
 
 	if ((pid = fork()) < 0)
-	{
-		perror("fork() error");
 		exit(-1);
-	}
 	else if (pid == 0)
 	{
 		if (is_heredoc(argv))
-			heredoc_conn2_cmd(fd, i, argv, env);
+			child_heredoc_mid(fd, i, argv, env);
 		else
-			conn2_cmd(fd, i, argv, env);
+			child_mid(fd, i, argv, env);
 		exit(0);
 	}
 	else if (pid > 0)

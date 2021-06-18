@@ -6,7 +6,7 @@
 /*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 04:09:27 by donpark           #+#    #+#             */
-/*   Updated: 2021/06/19 04:09:28 by donpark          ###   ########.fr       */
+/*   Updated: 2021/06/19 05:09:46 by donpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ void	run_only_cmd1(char **argv, char **env)
 	pid_t	pid;
 	int		status;
 
-	pid = fork();
+	if ((pid = fork()) < 0)
+		exit(-1);
 	if (pid == 0 && is_heredoc(argv))
 	{
 		heredoc(argv[2]);

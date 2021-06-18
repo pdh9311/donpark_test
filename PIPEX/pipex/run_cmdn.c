@@ -6,20 +6,20 @@
 /*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 04:09:29 by donpark           #+#    #+#             */
-/*   Updated: 2021/06/19 04:09:30 by donpark          ###   ########.fr       */
+/*   Updated: 2021/06/19 05:07:01 by donpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	heredoc_re_conn_cmd(int **fd, int *i, char **argv, char **env)
+void	child_heredoc_n(int **fd, int *i, char **argv, char **env)
 {
 	redirect_out(argv[(*i) + 1], argv);			// stdout → file2	// i == argc -2 이므로 argc - 1은 i + 1하면됨
 	connect_pipe(fd, (*i) - 4, STDIN_FILENO);	// pipe → stdin		// cmd=3이면, argc=7, (*i)=5, pipe: fd[1][2]
 	cmd_execve(argv[(*i)], env);
 }
 
-void	re_conn_cmd(int **fd, int *i, char **argv, char **env)
+void	child_n(int **fd, int *i, char **argv, char **env)
 {
 	redirect_out(argv[(*i) + 1], argv);			// stdout → file2	// i == argc -2 이므로 argc - 1은 i + 1하면됨
 	connect_pipe(fd, (*i) - 3, STDIN_FILENO);	// pipe → stdin		// cmd=3이면, argc=6, (*i)=4, pipe: fd[1][2]
@@ -36,19 +36,9 @@ void	run_cmdn(int **fd, int *i, char **argv, char **env)
 	else if (pid == 0)
 	{
 		if (is_heredoc(argv))
-		{
-			heredoc_re_conn_cmd(fd, i, argv, env);
-			// redirect_out(argv[(*i) + 1], argv);			// stdout → file2	// i == argc -2 이므로 argc - 1은 i + 1하면됨
-			// connect_pipe(fd, (*i) - 4, STDIN_FILENO);	// pipe → stdin		// cmd=3이면, argc=7, (*i)=5, pipe: fd[1][2]
-			// cmd_execve(argv[(*i)], env);
-		}
+			child_heredoc_n(fd, i, argv, env);
 		else
-		{
-			re_conn_cmd(fd, i, argv, env);
-			// redirect_out(argv[(*i) + 1], argv);			// stdout → file2	// i == argc -2 이므로 argc - 1은 i + 1하면됨
-			// connect_pipe(fd, (*i) - 3, STDIN_FILENO);	// pipe → stdin		// cmd=3이면, argc=6, (*i)=4, pipe: fd[1][2]
-			// cmd_execve(argv[(*i)], env);
-		}
+			child_n(fd, i, argv, env);
 		exit(0);
 	}
 	else
