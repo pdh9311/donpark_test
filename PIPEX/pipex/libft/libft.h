@@ -6,7 +6,7 @@
 /*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2020/12/27 04:45:31 by donpark           #+#    #+#             */
-/*   Updated: 2021/06/18 17:16:31 by donpark          ###   ########.fr       */
+/*   Updated: 2021/06/19 12:21:15 by donpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,6 +37,7 @@ int				split_line(char **backup, char **line,
 int				remains_data(char **backup, char **line,
 							int read_size, char *buf);
 int				get_next_line(int fd, char **line);
+void			*ft_realloc(void *ptr, size_t size);
 void			*ft_memset(void *b, int c, size_t len);
 void			ft_bzero(void *s, size_t n);
 void			*ft_memcpy(void *dst, const void *src, size_t n);
@@ -59,7 +60,6 @@ int				ft_isascii(int c);
 int				ft_isprint(int c);
 int				ft_toupper(int c);
 int				ft_tolower(int c);
-void			*ft_realloc(void *ptr, size_t size);
 void			*ft_calloc(size_t count, size_t size);
 char			*ft_strdup(const char *s1);
 char			*ft_substr(char const *s, unsigned int start, size_t len);
