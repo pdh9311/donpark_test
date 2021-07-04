@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cmd_execve.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: donpark <donpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 04:08:59 by donpark           #+#    #+#             */
-/*   Updated: 2021/06/19 04:09:01 by donpark          ###   ########.fr       */
+/*   Updated: 2021/07/04 18:28:52 by donpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	double_memory_free(char **mem)
 	free(mem);
 	mem = 0;
 }
-// 환경변수의 PATH를 찾는 함수
+
 char	**find_path_colonsplit(char **env)
 {
 	int		i;
@@ -56,7 +56,7 @@ char	**find_path_colonsplit(char **env)
 	}
 	return (NULL);
 }
-// cmd를 환경변수의 PATH에서 찾아서 실행하는 함수
+
 void	cmd_execve(char *cmd, char **env)
 {
 	char	**colon_split;

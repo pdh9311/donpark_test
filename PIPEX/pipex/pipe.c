@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   pipe.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: donpark <donpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 04:09:43 by donpark           #+#    #+#             */
-/*   Updated: 2021/06/19 04:28:43 by donpark          ###   ########.fr       */
+/*   Updated: 2021/07/04 18:35:54 by donpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	create_pipe(int **fd, int cmd_cnt, int pipe_cnt)
 	int		i;
 
 	i = 0;
-	while ((i < pipe_cnt) && (cmd_cnt > 1))	// cmd3까지 있다면, argc=6, cmd의 개수=3, pipe의 개수=2
+	while ((i < pipe_cnt) && (cmd_cnt > 1))
 	{
 		if (pipe(fd[i]) == -1)
 		{

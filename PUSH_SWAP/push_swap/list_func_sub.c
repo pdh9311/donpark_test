@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list_func_sub.c                                    :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: donpark <donpark@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/04 19:29:37 by donpark           #+#    #+#             */
+/*   Updated: 2021/07/04 19:33:54 by donpark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	del2(t_stack **lst, t_stack **tmp1)
@@ -15,7 +27,6 @@ void	delelse(t_stack **lst, t_stack **tmp1, t_stack **tmp2)
 	(*tmp2)->prev = *tmp1;
 }
 
-// Delete list's front node in free
 void	ft_delone_free(t_stack **lst)
 {
 	t_stack		*tmp1;
@@ -23,13 +34,13 @@ void	ft_delone_free(t_stack **lst)
 
 	if (lst == NULL || *lst == NULL)
 		return ;
-	if ((*lst)->next == NULL)			// 1개인 경우
+	if ((*lst)->next == NULL)
 	{
 		free(*lst);
 		*lst = NULL;
 		return ;
 	}
-	if ((*lst)->next == (*lst)->prev)	//  2개만 있는 경우 lst의 맨 앞을 제거
+	if ((*lst)->next == (*lst)->prev)
 	{
 		del2(lst, &tmp1);
 		free(*lst);
@@ -54,4 +65,3 @@ void	ft_delall_free(t_stack **lst, int size)
 		i++;
 	}
 }
-

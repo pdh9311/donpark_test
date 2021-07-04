@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   util.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: donpark <donpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 04:09:25 by donpark           #+#    #+#             */
-/*   Updated: 2021/06/19 04:09:26 by donpark          ###   ########.fr       */
+/*   Updated: 2021/07/04 18:32:59 by donpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int		ft_strcmp(char *s1, char *s2)
 {
-	size_t		i;
-	unsigned char *p1;
-	unsigned char *p2;
+	size_t			i;
+	unsigned char	*p1;
+	unsigned char	*p2;
 
 	i = 0;
 	p1 = (unsigned char *)s1;

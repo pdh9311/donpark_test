@@ -21,29 +21,16 @@ OBJS_B = $(SRCS_B:.c=.o)
 LIBFT = libft
 LIBFT_LIB = libft.a
 
-ifdef WITH_BONUS
-	SRCS = $(SRCS_B)
-	OBJS = $(OBJS_B)
-	NAME = $(CHECKER)
-else
-	SRCS = $(SRCS_M)
-	OBJS = $(OBJS_M)
-	NAME = $(PUSH_SWAP)
-endif
+.PHONY : all clean fclean re
 
-.PHONY : all clean fclean re bonus
+all : $(PUSH_SWAP) $(CHECKER)
 
-all : $(NAME)
-
-$(OBSJ) : $(SRCS)
-	$(CC) $(CFLAGS) -o $@ -c $?
-
-$(NAME) : $(OBJS)
+$(PUSH_SWAP) : $(OBJS_M)
 	make all -C $(LIBFT)
 	$(CC) $(CFLAGS) -o $@ $^ ./$(LIBFT)/$(LIBFT_LIB)
 
-bonus :
-	make WITH_BONUS=1 all
+$(CHECKER) : $(OBJS_B)
+	$(CC) $(CFLAGS) -o $@ $^ ./$(LIBFT)/$(LIBFT_LIB)
 
 clean :
 	rm -f $(OBJS_M) $(OBJS_B)

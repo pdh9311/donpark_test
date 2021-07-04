@@ -1,5 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   push_swap_func.c                                   :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: donpark <donpark@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/04 19:29:29 by donpark           #+#    #+#             */
+/*   Updated: 2021/07/04 19:29:29 by donpark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
-// rra, rrb
+
 void	reverse_rotate_ba(t_stack **lst, t_tmp tmp, char stack, int *buf)
 {
 	int		len;
@@ -28,14 +40,14 @@ void	reverse_rotate_ab(t_stack **a, t_stack **b, t_tmp tmp, int *buf)
 	int			len_2;
 	int			len_tmp;
 
-	len_1 = tmp.back_b;		// 중간 부분
-	len_2 = tmp.len_a;		// 큰 부분
+	len_1 = tmp.back_b;
+	len_2 = tmp.len_a;
 	stack = 'b';
 	stack_tmp = b;
-	if (tmp.len_a > tmp.back_b)	// 큰 부분이 중간 부분 보다 더 많다면
+	if (tmp.len_a > tmp.back_b)
 	{
-		len_1 = tmp.len_a;		// 큰 부분
-		len_2 = tmp.back_b;		// 중간 부분
+		len_1 = tmp.len_a;
+		len_2 = tmp.back_b;
 		stack = 'a';
 		stack_tmp = a;
 	}
@@ -53,7 +65,7 @@ void	swap_list(t_stack **lst, char stack, int *buf)
 {
 	int		tmp;
 
-	if (lst == NULL || *lst == NULL)		// lst == NULL 추가
+	if (lst == NULL || *lst == NULL)
 		return ;
 	tmp = (*lst)->content;
 	(*lst)->content = (*lst)->next->content;
@@ -64,7 +76,6 @@ void	swap_list(t_stack **lst, char stack, int *buf)
 		print_instructions(buf, "sb\n");
 }
 
-// lst2에서 lst1로 push
 void	push_list(t_stack **lst1, t_stack **lst2, char stack, int *buf)
 {
 	t_stack		*tmp;
@@ -82,26 +93,11 @@ void	push_list(t_stack **lst1, t_stack **lst2, char stack, int *buf)
 		print_instructions(buf, "pb\n");
 }
 
-/**
- * [ rotate ]	-1
- * 			A	A'
- * top		1	2
- * 			2	3
- * 			3	4
- * bottom	4	1
- *****************
- * [ rrotate ]	1
- * 			A	A'
- * top		1	4
- * 			2	1
- * 			3	2
- * bottom	4	3
- */
 void	rotate_list(t_stack **lst, int direction, char stack, int *buf)
 {
 	if (*lst == NULL || (*lst)->prev == NULL || (*lst)->next == NULL)
 		return ;
-	if (direction == 1)	// direction 이 1 인 경우 reverse rotation
+	if (direction == 1)
 	{
 		*lst = (*lst)->prev;
 		if (stack == 'a')

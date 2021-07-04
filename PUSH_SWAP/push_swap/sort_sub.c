@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_sub.c                                         :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: donpark <donpark@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/04 19:27:08 by donpark           #+#    #+#             */
+/*   Updated: 2021/07/04 19:29:17 by donpark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	recursive_0123_ba(t_stack **a, t_stack **b, int len, int *buf)
@@ -26,16 +38,16 @@ void	recursive_0123_ab(t_stack **a, int len, int *buf)
 
 void	pivot_condition_ba(t_stack **a, t_stack **b, t_tmp *tmp, int *buf)
 {
-	if (tmp->pivot.pivot_l > (*b)->content)		// 작은 피봇 보다 작으면 rb
+	if (tmp->pivot.pivot_l > (*b)->content)
 	{
 		rotate_list(b, -1, 'b', buf);
 		tmp->len_b++;
 	}
 	else
 	{
-		if (tmp->pivot.pivot_h <= (*b)->content)	// 큰 피봇 보다 크거나 같으면 pa
+		if (tmp->pivot.pivot_h <= (*b)->content)
 			push_list(a, b, 'a', buf);
-		else if (tmp->pivot.pivot_h > (*b)->content)	// 작은 피봇 보다 같거나 크면 pa ra (즉, pivot_l <= content < pivot_h)
+		else if (tmp->pivot.pivot_h > (*b)->content)
 		{
 			push_list(a, b, 'a', buf);
 			rotate_list(a, -1, 'a', buf);
@@ -47,16 +59,16 @@ void	pivot_condition_ba(t_stack **a, t_stack **b, t_tmp *tmp, int *buf)
 
 void	pivot_condition_ab(t_stack **a, t_stack **b, t_tmp *tmp, int *buf)
 {
-	if (tmp->pivot.pivot_h < (*a)->content)		// 큰 피봇 보다 크면 ra
+	if (tmp->pivot.pivot_h < (*a)->content)
 	{
 		rotate_list(a, -1, 'a', buf);
 		tmp->len_a++;
 	}
 	else
 	{
-		if (tmp->pivot.pivot_l >= (*a)->content)	// 작은 피봇 보다 작거나 같으면 pb
+		if (tmp->pivot.pivot_l >= (*a)->content)
 			push_list(b, a, 'b', buf);
-		else if (tmp->pivot.pivot_l < (*a)->content)	// 작은 피봇 보다 크면 pb, rb (즉, pivot_l < content <= pivot_h)
+		else if (tmp->pivot.pivot_l < (*a)->content)
 		{
 			push_list(b, a, 'b', buf);
 			rotate_list(b, -1, 'b', buf);

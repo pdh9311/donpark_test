@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   utils.c                                            :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: donpark <donpark@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/04 19:27:05 by donpark           #+#    #+#             */
+/*   Updated: 2021/07/04 20:18:33 by donpark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 void	dptr_free(char **dptr)
@@ -39,7 +51,6 @@ int		double_check(int *int_arr, int len, int value)
 	return (i);
 }
 
-// 정렬되어 있는지 확인
 int		check_sort(t_stack *lst, int len)
 {
 	t_stack		*tmp;
@@ -58,29 +69,3 @@ int		check_sort(t_stack *lst, int len)
 		return (-1);
 	return (i);
 }
-/*
-void	test_stack_print(t_stack *a, t_stack *b)
-{
-	printf("[a] ");
-	test_print_dlst(a);
-	printf("[b] ");
-	if (b != NULL)
-		test_print_dlst(b);
-}
-
-void	test_print_dlst(t_stack *lst)
-{
-	t_stack		*tmp;
-
-	if (lst == NULL)
-		return ;
-	tmp = lst;
-	printf("content: ");
-	while (tmp->next != NULL && tmp->next != lst)
-	{
-		printf("(%d)  ", tmp->content);
-		tmp = tmp->next;
-	}
-	printf("(%d)\n", tmp->content);
-}
-*/

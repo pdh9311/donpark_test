@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   list_func.c                                        :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: donpark <donpark@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/04 19:29:32 by donpark           #+#    #+#             */
+/*   Updated: 2021/07/04 19:58:44 by donpark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 t_stack	*ft_new(int content)
@@ -12,34 +24,33 @@ t_stack	*ft_new(int content)
 	return (node);
 }
 
-// Add to back
-void	ft_add(t_stack **lst, t_stack *new)
+void	ft_add(t_stack **lst, t_stack *new1)
 {
 	t_stack		*last;
 
 	last = NULL;
-	if (lst == NULL || new == NULL)
+	if (lst == NULL || new1 == NULL)
 		return ;
-	if (*lst == NULL)				// 비어 있는 경우
+	if (*lst == NULL)
 	{
-		*lst = new;
+		*lst = new1;
 		(*lst)->next = NULL;
 		(*lst)->prev = NULL;
 		return ;
 	}
-	if ((*lst)->prev == NULL)		// 처음 1개만 만들어졌을 경우
+	if ((*lst)->prev == NULL)
 	{
-		(*lst)->next = new;
-		new->prev = *lst;
+		(*lst)->next = new1;
+		new1->prev = *lst;
 	}
 	else
 	{
 		last = (*lst)->prev;
-		new->prev = last;
-		last->next = new;
+		new1->prev = last;
+		last->next = new1;
 	}
-	(*lst)->prev = new;
-	new->next = *lst;
+	(*lst)->prev = new1;
+	new1->next = *lst;
 }
 
 int		ft_listsize(t_stack *lst)
@@ -60,7 +71,6 @@ int		ft_listsize(t_stack *lst)
 	return (cnt);
 }
 
-// Delete list's front node
 void	ft_delone(t_stack **lst)
 {
 	t_stack		*tmp1;
@@ -68,12 +78,12 @@ void	ft_delone(t_stack **lst)
 
 	if (lst == NULL || *lst == NULL)
 		return ;
-	if ((*lst)->next == NULL)			// 1개인 경우
+	if ((*lst)->next == NULL)
 	{
 		*lst = NULL;
 		return ;
 	}
-	if ((*lst)->next == (*lst)->prev)	//  2개만 있는 경우 lst의 맨 앞을 제거
+	if ((*lst)->next == (*lst)->prev)
 	{
 		tmp1 = (*lst)->next;
 		tmp1->next = NULL;
@@ -89,65 +99,3 @@ void	ft_delone(t_stack **lst)
 		*lst = tmp2;
 	}
 }
-
-/*	test push_list
-void			push_list(t_stack **lst1, t_stack **lst2, char stack,
-		int *buffer)
-{
-	t_stack		*tmp;
-
-	if (lst2 == NULL || *lst2 == NULL)
-		return ;
-	tmp = *lst2;
-	ft_delone(lst2);
-	ft_add(lst1, tmp);
-	if ((*lst1)->prev != NULL && (*lst1)->next != NULL)
-		*lst1 = (*lst1)->prev;
-	if (stack == 'a')
-		print_instructions(buffer, "pa\n");
-	else
-		print_instructions(buffer, "pb\n");
-}
-
-int		main(void)
-{
-	t_stack		*a;
-	t_stack		*b;
-
-	a = ft_new(1);
-	ft_add(&a, ft_new(2));
-	ft_add(&a, ft_new(3));
-	ft_add(&a, ft_new(4));
-	b = ft_new(6);
-	ft_add(&b, ft_new(5));
-	ft_add(&b, ft_new(7));
-	ft_add(&b, ft_new(9));
-	print_dlst(a);
-	print_dlst(b);
-	printf("\n");
-	push_list(&a, &b, 'a', 0);
-	print_dlst(a);
-	print_dlst(b);
-
-	return (0);
-}
-*/
-
-/* test 1
-int		main(void)
-{
-	t_stack		*a;
-
-	a = ft_new(10);
-	ft_add(&a, ft_new(11));
-	ft_add(&a, ft_new(12));
-	ft_add(&a, ft_new(13));
-	print_dlst(a);
-	ft_delone_free(&a);
-	print_dlst(a);
-	ft_delone_free(&a);
-	print_dlst(a);
-	ft_delall_free(&a, ft_listsize(a));
-	return (0);
-}
-*/

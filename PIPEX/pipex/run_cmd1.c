@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_cmd1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: donpark <donpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 04:09:31 by donpark           #+#    #+#             */
-/*   Updated: 2021/06/19 04:09:32 by donpark          ###   ########.fr       */
+/*   Updated: 2021/07/04 18:30:47 by donpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,13 @@ void	run_cmd1(int **fd, int *i, char **argv, char **env)
 		if (is_heredoc(argv))
 		{
 			heredoc(argv[2]);
-			connect_pipe(fd, (*i) - 3, STDOUT_FILENO);		// stdout → pipe	pipe: fd[0][2]
+			connect_pipe(fd, (*i) - 3, STDOUT_FILENO);
 			cmd_execve(argv[(*i)], env);
 		}
 		else
 		{
-			redirect_in(argv[WRITE]);					// file1 → stdin
-			connect_pipe(fd, (*i) - 2, STDOUT_FILENO);	// stdout → pipe	pipe: fd[0][2]
+			redirect_in(argv[WRITE]);
+			connect_pipe(fd, (*i) - 2, STDOUT_FILENO);
 			cmd_execve(argv[(*i)], env);
 		}
 		exit(0);

@@ -1,0 +1,5 @@
+fd1 :3, ret:1
+printf를 썼지만 파일에 기록됨 
+message fd2
+message fd2
+message fd2

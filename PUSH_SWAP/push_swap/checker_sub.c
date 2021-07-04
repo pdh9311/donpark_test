@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   checker_sub.c                                      :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: donpark <donpark@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/04 19:29:42 by donpark           #+#    #+#             */
+/*   Updated: 2021/07/04 19:31:42 by donpark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
 int		sort_sub(t_stack **a, t_stack **b, char *line)
@@ -56,7 +68,6 @@ void	swap_list_checker(t_stack **lst)
 	(*lst)->next->content = tmp;
 }
 
-// lst2 에서 lst1으로 push
 void	push_list_checker(t_stack **lst1, t_stack **lst2)
 {
 	t_stack	*tmp;
@@ -65,12 +76,11 @@ void	push_list_checker(t_stack **lst1, t_stack **lst2)
 		return ;
 	tmp = *lst2;
 	ft_delone(lst2);
-	ft_add(lst1, tmp);	// list의 뒤에 추가 하기 때문에
-	if ((*lst1)->prev != NULL && (*lst1)->next != NULL)		// 초기위치를 추가한 위치로 옮겨준다
+	ft_add(lst1, tmp);
+	if ((*lst1)->prev != NULL && (*lst1)->next != NULL)
 		*lst1 = (*lst1)->prev;
 }
 
-// direction 1 이면 rra rrb
 void	rotate_list_checker(t_stack **lst, int direction)
 {
 	if (*lst == NULL || (*lst)->prev == NULL || (*lst)->next == NULL)

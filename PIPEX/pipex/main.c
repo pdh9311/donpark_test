@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: donpark <donpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 04:09:47 by donpark           #+#    #+#             */
-/*   Updated: 2021/06/19 05:02:51 by donpark          ###   ########.fr       */
+/*   Updated: 2021/07/04 19:14:50 by donpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,26 +42,6 @@ void	free_fd(int ***fd, int pipe_cnt)
 	free(*fd);
 }
 
-/**
- * ./pipex file1 cmd1 file2
- * (argc = 4), (cmd_cnt = argc -3), (pipe_cnt = cmd_cnt -1 = zero)
- *
- * ./pipex file1 cmd1 cmd2 file2
- * (argc = 5), (cmd_cnt = argc -3), (pipe_cnt = cmd_cnt -1 = argc -4)
- *
- * ./pipex here_doc LIMITER cmd1 file2
- * (argc = 5), (cmd_cnt = argc -4), (pipe_cnt = cmd_cnt -1 = zero)
- *
- * ./pipex here_doc LIMITER cmd1 cmd2 file2
- * (argc = 6), (cmd_cnt = argc -4), (pipe_cnt = cmd_cnt -1 = argc -5)
- */
-/**	cmd의 시작 index 위치
- * here_doc인 경우 ./pipex here_doc LIMITER cmd1 cmd2 file2
- * cmd_idx = 3 = argc - 3 ********** argc = 6
- * 그 외의 경우 ./pipex file1 cmd1 cmd2 file2
- * cmd_idx = 2 = argc - 3 ************ argc = 5
- */
-
 void	cmd_pipe_cnt(int argc, char **argv, int *cmd_cnt, int *pipe_cnt)
 {
 	if (is_heredoc(argv))
@@ -88,9 +68,9 @@ int		main(int argc, char *argv[], char **env)
 	if (argc < 4)
 		return (0);
 	create_pipe(fd, cmd_cnt, pipe_cnt);
-	if (cmd_cnt == 1)				// cmd1 밖에 없을 경우
+	if (cmd_cnt == 1)
 		run_only_cmd1(argv, env);
-	i = argc - cmd_cnt - 1;			// cmd1의 시작 위치
+	i = argc - cmd_cnt - 1;
 	while (i < argc - 1)
 	{
 		if (i == (argc - cmd_cnt - 1))
@@ -104,4 +84,3 @@ int		main(int argc, char *argv[], char **env)
 	free_fd(&fd, pipe_cnt);
 	return (0);
 }
-

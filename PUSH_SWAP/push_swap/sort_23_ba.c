@@ -1,9 +1,17 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   sort_23_ba.c                                       :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: donpark <donpark@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2021/07/04 19:27:09 by donpark           #+#    #+#             */
+/*   Updated: 2021/07/04 19:29:18 by donpark          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #include "push_swap.h"
 
-/**
- * CASE5 : 1 3 2 < < > rb pa pa pa
- * CASE6 : 1 2 3 < < < rrb pa sb pa pa
- */
 void		sort_23_ba_sub3(t_stack **dst, t_stack **src, int *buf, int *flag)
 {
 	if ((*src)->content < (*src)->next->content &&
@@ -29,10 +37,6 @@ void		sort_23_ba_sub3(t_stack **dst, t_stack **src, int *buf, int *flag)
 	}
 }
 
-/**
- * CASE3 : 2 3 1 < > > sb pa pa pa
- * CASE4 : 2 1 3 > < < rrb pa pa pa
- */
 void		sort_23_ba_sub2(t_stack **dst, t_stack **src, int *buf, int *flag)
 {
 	if ((*src)->content < (*src)->next->content &&
@@ -57,10 +61,6 @@ void		sort_23_ba_sub2(t_stack **dst, t_stack **src, int *buf, int *flag)
 	}
 }
 
-/**
- * CASE1 : 3 2 1 > > > pa pa pa
- * CASE2 : 3 1 2 > > < pa sb pa pa
- */
 void		sort_23_ba_sub1(t_stack **dst, t_stack **src, int *buf, int *flag)
 {
 	if ((*src)->content > (*src)->next->content &&
@@ -84,14 +84,6 @@ void		sort_23_ba_sub1(t_stack **dst, t_stack **src, int *buf, int *flag)
 	}
 }
 
-/**
- * CASE1 : 3 2 1 > > > pa pa pa
- * CASE2 : 3 1 2 > > < pa sb pa pa
- * CASE3 : 2 3 1 < > > sb pa pa pa
- * CASE4 : 2 1 3 > < < rrb pa pa pa
- * CASE5 : 1 3 2 < < > rb pa pa pa
- * CASE6 : 1 2 3 < < < rrb pa sb pa pa
- */
 void		sort_23_ba_sub(t_stack **dst, t_stack **src, int *buf)
 {
 	int			flag;

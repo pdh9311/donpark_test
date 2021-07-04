@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_cmd_mid.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: donpark <donpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 04:09:34 by donpark           #+#    #+#             */
-/*   Updated: 2021/06/19 05:08:03 by donpark          ###   ########.fr       */
+/*   Updated: 2021/07/04 18:43:14 by donpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,15 +14,15 @@
 
 void	child_heredoc_mid(int **fd, int *i, char **argv, char **env)
 {
-	connect_pipe(fd, (*i) - 4, STDIN_FILENO);	// pipe → stdin		// cmd=3이면, argc=6, (*i)=3, pipe: fd[0][2]
-	connect_pipe(fd, (*i) - 3, STDOUT_FILENO);	// stdout → pipe	// cmd=3이면, argc=6, (*i)=3, pipe: fd[1][2]
+	connect_pipe(fd, (*i) - 4, STDIN_FILENO);
+	connect_pipe(fd, (*i) - 3, STDOUT_FILENO);
 	cmd_execve(argv[(*i)], env);
 }
 
 void	child_mid(int **fd, int *i, char **argv, char **env)
 {
-	connect_pipe(fd, (*i) - 3, STDIN_FILENO);	// pipe → stdin		// cmd=3이면, argc=6, (*i)=3, pipe: fd[0][2]
-	connect_pipe(fd, (*i) - 2, STDOUT_FILENO);	// stdout → pipe	// cmd=3이면, argc=6, (*i)=3, pipe: fd[1][2]
+	connect_pipe(fd, (*i) - 3, STDIN_FILENO);
+	connect_pipe(fd, (*i) - 2, STDOUT_FILENO);
 	cmd_execve(argv[(*i)], env);
 }
 
