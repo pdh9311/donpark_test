@@ -12,9 +12,7 @@ void	push_swap_sort_ba(t_stack **b, t_stack **a, int len, int *buf)
 	init_struct_tmp(&tmp);
 	tmp.pivot = find_pivot(b, len);
 	while (*b != NULL && len--)
-	{
 		pivot_condition_ba(a, b, &tmp, buf);	// B의 pivot을 기준으로 큰 부분, 중간 부분, 작은 부분을 나누어 준다.
-	}
 	reverse_rotate_ba(b, tmp, 'b', buf);	// B의 작은 부분을 앞으로 가져온다.
 	push_swap_sort_ab(a, b, tmp.len_a - tmp.back_a, buf);	// A의 큰 부분을 다시 정렬
 	reverse_rotate_ba(a, tmp, 'a', buf);		// A의 중간 부분을 앞으로 가져온다.
@@ -34,9 +32,7 @@ void	push_swap_sort_ab(t_stack **a, t_stack **b, int len, int *buf)
 	init_struct_tmp(&tmp);
 	tmp.pivot = find_pivot(a, len);
 	while (*a != NULL && len--)
-	{
 		pivot_condition_ab(a, b, &tmp, buf);	// A의 pivot을 기준으로 큰 부분, 중간 부분, 작은 부분을 나누어 준다.
-	}
 	reverse_rotate_ab(a, b, tmp, buf);			// B에 중간 부분을 앞으로 가져온다.
 	push_swap_sort_ab(a, b, tmp.len_a, buf);	// A의 큰 부분이 정렬될때까지 재귀호출하면서 A를 정렬
 	push_swap_sort_ba(b, a, tmp.back_b, buf);	// A가 정렬된 순간부터 B의 중간 부분을 역정렬해서 A에 push하여 정렬한다.
@@ -74,16 +70,16 @@ void	push_swap_sort_45_sub(t_stack **a, t_stack **b, int index, int *buf)
 void	push_swap_sort_45(t_stack **a, t_stack **b, int len, int *buf)
 {
 	t_stack			*tmp;
-	int				num_pa;
+	int				num_pb;
 	int				tmp_int;
 	int				index;
 
-	num_pa = len - 3;
+	num_pb = len - 3;
 	while (--len >= 3)		// a에 3개만 남기고 b로 push한 다음
 		push_list(b, a, 'b', buf);
 	sort_23_ab(a, 3, buf);	// a에 3개를 정렬하고
 	len = 0;
-	while (num_pa--)		// b로 push한 개수만큼 반복하는데
+	while (num_pb--)		// b로 push한 개수만큼 반복하는데
 	{
 		tmp = *a;
 		index = 0;

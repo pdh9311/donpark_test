@@ -6,7 +6,7 @@
 /*   By: donpark <donpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/07/04 19:27:07 by donpark           #+#    #+#             */
-/*   Updated: 2021/07/04 19:29:16 by donpark          ###   ########.fr       */
+/*   Updated: 2021/07/05 18:06:50 by donpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,9 +24,7 @@ void	push_swap_sort_ba(t_stack **b, t_stack **a, int len, int *buf)
 	init_struct_tmp(&tmp);
 	tmp.pivot = find_pivot(b, len);
 	while (*b != NULL && len--)
-	{
 		pivot_condition_ba(a, b, &tmp, buf);
-	}
 	reverse_rotate_ba(b, tmp, 'b', buf);
 	push_swap_sort_ab(a, b, tmp.len_a - tmp.back_a, buf);
 	reverse_rotate_ba(a, tmp, 'a', buf);
@@ -46,9 +44,7 @@ void	push_swap_sort_ab(t_stack **a, t_stack **b, int len, int *buf)
 	init_struct_tmp(&tmp);
 	tmp.pivot = find_pivot(a, len);
 	while (*a != NULL && len--)
-	{
 		pivot_condition_ab(a, b, &tmp, buf);
-	}
 	reverse_rotate_ab(a, b, tmp, buf);
 	push_swap_sort_ab(a, b, tmp.len_a, buf);
 	push_swap_sort_ba(b, a, tmp.back_b, buf);
