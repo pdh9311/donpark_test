@@ -6,7 +6,7 @@
 /*   By: donpark <donpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 04:09:31 by donpark           #+#    #+#             */
-/*   Updated: 2021/07/04 18:30:47 by donpark          ###   ########.fr       */
+/*   Updated: 2021/07/05 11:59:15 by donpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	run_cmd1(int **fd, int *i, char **argv, char **env)
 		}
 		else
 		{
-			redirect_in(argv[WRITE]);
+			redirect_in(argv[1]);
 			connect_pipe(fd, (*i) - 2, STDOUT_FILENO);
 			cmd_execve(argv[(*i)], env);
 		}

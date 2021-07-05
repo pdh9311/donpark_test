@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   main.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: donpark <donpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 04:09:47 by donpark           #+#    #+#             */
-/*   Updated: 2021/06/19 05:02:51 by donpark          ###   ########.fr       */
+/*   Updated: 2021/07/05 12:01:54 by donpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "pipex.h"
 
-void	create_fd(int ***fd, int pipe_cnt)
+void	create_fd(int ***fd, int pipe_cnt)	// fd[0][2], fd[1][2], fd[2][2] ...
 {
 	int		i;
 

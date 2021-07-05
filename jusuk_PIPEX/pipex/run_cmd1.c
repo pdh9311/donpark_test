@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   run_cmd1.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: donpark <donpark@student.42seoul.kr>       +#+  +:+       +#+        */
+/*   By: donpark <donpark@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/06/19 04:09:31 by donpark           #+#    #+#             */
-/*   Updated: 2021/06/19 04:09:32 by donpark          ###   ########.fr       */
+/*   Updated: 2021/07/05 11:58:59 by donpark          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	run_cmd1(int **fd, int *i, char **argv, char **env)
 		}
 		else
 		{
-			redirect_in(argv[WRITE]);					// file1 → stdin
+			redirect_in(argv[1]);					// file1 → stdin
 			connect_pipe(fd, (*i) - 2, STDOUT_FILENO);	// stdout → pipe	pipe: fd[0][2]
 			cmd_execve(argv[(*i)], env);
 		}
